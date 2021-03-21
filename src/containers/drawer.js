@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-//import {AiFillMessage} from "react-icons/ai";
+import {AiFillMessage} from "react-icons/ai";
 import HomeIcon from '@material-ui/icons/Home';
 import LaptopChromebookIcon from '@material-ui/icons/LaptopChromebook';
 import GroupIcon from '@material-ui/icons/Group';
@@ -203,7 +203,7 @@ const NavBar= () => {
             </IconButton>          
             <IconButton aria-label="show 4 new mails" style={{color:'#50b5ff'}}>
               <Badge badgeContent={4} color="secondary">
-                {/*<AiFillMessage />*/}
+                <AiFillMessage />
               </Badge>
             </IconButton>
             <IconButton aria-label="" style={{color:'#50b5ff'}}>

@@ -1,3 +1,4 @@
+import { CallSplit } from '@material-ui/icons';
 import firebase from  'firebase';
 import { authConstanst } from './constants';
 export const signup = (user) => {
@@ -69,9 +70,9 @@ export const signin = (user) =>{
               isOnline: true
           })
           .then(() => {
-            const name = data.user.displayName;
-            const nom = name; 
-            const prenom = name;
+            const name = data.user.displayName.split(" ");
+            const nom = name[1]; 
+            const prenom = name[3];
   
           const loggedInUser = {
               nom,

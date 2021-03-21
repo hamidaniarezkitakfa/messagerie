@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRealtimeConversations, getRealtimeUsers, updateMessage } from '../../actions';
 import Layout from '../../components/Layout';
 import './style.css';
-import Drawer from '../drawer'
+import drawer from '../drawer'
 
 const User = (props) => {
 
@@ -19,7 +19,7 @@ const User = (props) => {
               <img src={user.imageUrl} alt="" />
           </div>
           <div style={{display:'flex', flex:1, justifyContent:'space-between', margin: '0 10px'}}>
-              <span style={{fontWeight: 500}}>{user.nom}  {user.prenom}</span>
+              <span style={{fontWeight: 500}}>{user.followed}  </span>
              <span className={user.isOnline ? `onlineStatus` : `onlineStatus.off`}></span>
           </div>
       </div>
@@ -75,6 +75,7 @@ const HomePage = (props) => {
         
        
       }
+      
 
       if(message !== ""){
         dispatch(updateMessage(msgObj))
@@ -88,9 +89,7 @@ const HomePage = (props) => {
     }
 
   return (
-    <div>
-  
-   <Drawer/>
+    <Layout>
     <section className="container">
 
     <div className="listOfUsers">
@@ -152,7 +151,7 @@ const HomePage = (props) => {
        
     </div>
 </section>
-</div>
+</Layout>
   );
 }
 

@@ -1,22 +1,26 @@
 import { userConstansts } from "./constants";
 import firebase from  'firebase';
 
-export const getRealtimeUsers = (email) => {
+export const getRealtimeUsers = (follow) => {
     return async (dispatch) => {
         dispatch({type: `${userConstansts.GET_REALTIME_USERS}_REQUEST` });
         const db = firebase.firestore();
-        const unsubscribe = db.collection("users")
+        const unsubscribe = db.collection("follows")
+        
+       
         //.where("uid", "!=", uid)
         .onSnapshot((querySnapshot) => {
            const users = [];
             querySnapshot.forEach((doc) => {
-                if(doc.data().email != email ){
+                if(doc.data().follow == follow ){
+                   
                     users.push(doc.data());
                 }
             
         });
-          // console.log(users);
+           console.log(users);
           dispatch({type: `${userConstansts.GET_REALTIME_USERS}_SUCCESS`,
+          
           payload: {users}
         });
     });
@@ -32,11 +36,13 @@ export const updateMessage = (msgObj) => {
         db.collection('conversations')
         .add({
             ...msgObj,
-            isView: false,
+            isView: false ,
             createdAt: new Date()
         })
+        
         .then((data) =>{
             console.log(data)
+            
 
             //success
            // dispatch({
@@ -53,6 +59,7 @@ export const getRealtimeConversations = (user) =>{
     return async dispatch =>{
         const db = firebase.firestore();
         db.collection('conversations')
+        
         .where('user_uid_1','in',[user.uid_1, user.uid_2])
         .orderBy('createdAt', 'asc' )
         .onSnapshot((querySnapshot) =>{
