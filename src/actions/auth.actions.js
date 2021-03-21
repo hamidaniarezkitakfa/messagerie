@@ -18,12 +18,12 @@ export const signup = (user) => {
                 //if you are her means it is updated succefuly
                 db.collection('users')
                 .doc(data.user.email)
-                .set({
+                .set({ // champ de la collection
                     nom: user.nom,
                     prenom: user.prenom,
                     uid: data.user.uid,
                     createdAt: new Date(),
-                    isOnline: true
+                    isOnline: false  
                 })
                 .then(() =>{
                    //succeful
@@ -67,7 +67,7 @@ export const signin = (user) =>{
           db.collection('users')
           .doc(data.user.email)
           .update({
-              isOnline: true
+              isOnline: true //devien true apres clicker sur login 
           })
           .then(() => {
             const name = data.user.displayName.split(" ");
